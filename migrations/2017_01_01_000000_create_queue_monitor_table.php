@@ -17,6 +17,7 @@ class CreateQueueMonitorTable extends Migration
             $table->string('job_id')->index();
             $table->string('name')->nullable();
             $table->string('queue')->nullable();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('started_at')->nullable()->index();
             $table->timestamp('finished_at')->nullable();
             $table->integer('time_elapsed')->nullable()->index();
