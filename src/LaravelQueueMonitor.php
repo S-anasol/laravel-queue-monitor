@@ -75,6 +75,7 @@ class LaravelQueueMonitor
         } else {
             $queueMonitor->started_at = Carbon::now();
             $queueMonitor->queue = $job->getQueue();
+            $queueMonitor->save();
         }
     }
 
