@@ -73,9 +73,10 @@ class LaravelQueueMonitor
                 'queue'      => $job->getQueue(),
             ]);
         } else {
-            $queueMonitor->started_at = Carbon::now();
-            $queueMonitor->queue = $job->getQueue();
-            $queueMonitor->save();
+            DB::table('queue_monitor')->where('id', $this->getJobId($job))->update([
+                'queue'  => $job->getQueue(),
+                'started_at' => Carbon::now(),
+            ]);
         }
     }
 
